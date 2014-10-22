@@ -1,4 +1,4 @@
-load "article.rb"
+load 'article.rb'
 
 class ArticleManager
   def initialize(articles = [])
@@ -6,74 +6,39 @@ class ArticleManager
   end
   
   def worst_articles
-    return @articles.sort { |a1, a2| a1.positive_votes <=> a2.positive_votes }
+    @articles.sort { |a1, a2| a1.positive_votes <=> a2.positive_votes }
   end
   
   def best_articles
-    return @articles.sort { |a1, a2| a2.positive_votes <=> a1.positive_votes }
+    @articles.sort { |a1, a2| a2.positive_votes <=> a1.positive_votes }
   end
   
   def worst_article
-    if @articles.length == 0
-      return "No articles"
-    else
-      worst = @articles[0]
-    end
-    
-    @articles.each do |a|
-      if a.positive_votes < worst.positive_votes
-        worst = a
-      end
-    end
-    return worst
+    @articles.min  { |a1, a2| a1.positive_votes <=> a2.positive_votes }
   end
   
   def best_article
-    if @articles.length == 0
-        return "No articles"
-      else
-        best = @articles[0]
-      end
-      
-      @articles.each do |a|
-        if a.positive_votes > best.positive_votes
-          best = a
-        end
-      end
-    return best
+    @articles.max  { |a1, a2| a1.positive_votes <=> a2.positive_votes }
   end
   
-  def most_popular_article 
-    if @articles.length == 0
-          return "No articles"
-        else
-          popular = @articles[0]
-        end
-        
-        @articles.each do |a|
-          if a.votes > popular.votes
-            popular = a
-          end
-        end
-    return popular
+  def most_popular_article
+    @articles.max  { |a1, a2| a1.votes <=> a2.votes }
   end
   
   def include?(pattern)
-    return @articles.select { |a| a.include? pattern }
+    @articles.select { |a| a.include? pattern }
   end
   
   def authors
-    return @articles.map { |a| a.author }
+    @articles.map { |a| a.author }
   end
   
   def number_of_authors
-    return @articles.uniq { |a| a.author }.length
+    self.authors.length
   end
   
   def votes
-    sum = 0
-    @articles.each { |a| sum += a.votes }
-    return sum
+    @articles.map { |a| a.votes }.inject(:+)
   end
   
   def <<(article)
@@ -81,12 +46,8 @@ class ArticleManager
   end
   
   def to_s
-    s = "List of articles:\n\n"
-    @articles.each do |article|
-      s += "   ***   \n"
-      s += article.to_s
-      s += "\n\n"
-    end
-    return s
+    str = "List of articles:\n\n"
+    @articles.each { |article| str += "   ***   \n#{article.to_s}\n\n" }
+    str
   end
 end
