@@ -11,7 +11,7 @@ class MockArticle < Article
   end
   
   def generate_author
-    "#{ @@WORD_LIST[Random.rand(@@LENGTH-1)].capitalize } #{ @@WORD_LIST[Random.rand(@@LENGTH-1)].capitalize }"
+    "#{ @@WORD_LIST[Random.rand(@@LENGTH-1)].capitalize } #{ @@WORD_LIST[Random.rand(@@LENGTH-1)] }".capitalize
   end
   
   def generate_title
