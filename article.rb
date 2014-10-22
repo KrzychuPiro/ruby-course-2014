@@ -19,35 +19,34 @@ class Article
   end
     
   def positive_votes
-    return @likes - @dislikes
+    @likes - @dislikes
   end
     
   def votes
-    return @likes + @dislikes
+    @likes + @dislikes
   end
   
   def shortened_to(limit)
     if limit < 4
-      return '...'
+      '...'
     else
-      return @content[0..limit-4] + '...'
+      @content[0..limit-4] + '...'
     end 
   end
 
   def include?(pattern)
-    return @content.include? pattern
+    @content.include? pattern
   end
   
   def words
-    return @content.split(%r{[^\w'\w]})  # allow the words which include an apostrophe.
+    @content.split(%r{[^\w'\w]})
   end
   
   def distinct_words
-    return self.words.uniq! { |s| s.downcase }
+    self.words.uniq! { |s| s.downcase }
   end
   
   def to_s
-    return @title
-    # return ["\"" + @title + "\"", self.shortened_to(70), @author].join("\n")
+    @title
   end
 end
