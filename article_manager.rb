@@ -1,4 +1,4 @@
-load 'article.rb'
+load "article.rb"
 
 class ArticleManager
   def initialize(articles = [])
