@@ -39,7 +39,7 @@ class Article
   end
   
   def words
-    @content.split(%r{[^\w'\w]})
+    @content.split(%r{[^\w'\w]}).select { |a| a != '' }
   end
   
   def distinct_words
