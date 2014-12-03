@@ -1,4 +1,5 @@
-load "article.rb"
+load 'article.rb'
+load 'article_filesystem'
 
 class ArticleManager
   def initialize(articles = [])
@@ -49,5 +50,9 @@ class ArticleManager
     str = "List of articles:\n\n"
     @articles.each { |article| str += "   ***   \n#{article.to_s}\n\n" }
     str
+  end
+
+  def load_articles(path)
+    Dir.foreach(path) { |file| @articles << ArticleFilesystem.read(file) }
   end
 end
