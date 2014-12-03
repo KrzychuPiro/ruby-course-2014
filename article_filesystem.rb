@@ -11,4 +11,14 @@ class ArticleFilesystem
     f.close
   end
 
+  def self.read(path)
+    f = File.open(path, 'r')
+    rough_article = f.readline.split('|')
+    f.close
+    article = Article.new(rough_article[1],rough_article[2],rough_article[0])
+    rough_article[3].to_i.times { article.like! }
+    rough_article[4].to_i.times { article.dislike! }
+    article
+  end
+
 end
