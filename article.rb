@@ -30,7 +30,7 @@ class Article
   end
   
   def shortened_to(limit)
-    if limit < 49
+    if limit < 4
       '...'
     else
       @content[0..limit-4] + '...'
@@ -54,6 +54,6 @@ class Article
   end
 
   def created_stamp
-    puts Date.parse(@created_at.to_s).stamp('Sunday, May 1, 2000')
+    Date.parse(@created_at.to_s).stamp('Sunday, May 1, 2000')
   end
 end
