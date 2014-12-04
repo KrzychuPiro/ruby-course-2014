@@ -28,15 +28,39 @@ class TestArticleManager < Test::Unit::TestCase
     @article_manager = ArticleManager.new([@bajka, @lorem, @inwokacja])
   end
 
-  def test_simple
+  def test_bests
     assert_equal([@bajka, @lorem, @inwokacja], @article_manager.best_articles)
+  end
+
+  def test_worsts
     assert_equal([@inwokacja, @lorem, @bajka], @article_manager.worst_articles)
+  end
+
+  def test_best
     assert_equal(@bajka, @article_manager.best_article)
+  end
+
+  def test_worst
     assert_equal(@inwokacja, @article_manager.worst_article)
+  end
+
+  def test_popular
     assert_equal(@bajka, @article_manager.most_popular_article)
+  end
+
+  def test_include
     assert_equal([@lorem], @article_manager.include?('Proin nibh augue'))
+  end
+
+  def test_authors
     assert_equal(['', 'Cyceron', 'Adam Mickiewicz'], @article_manager.authors)
+  end
+
+  def test_number_of_authors
     assert_equal(3, @article_manager.number_of_authors)
+  end
+
+  def test_votes
     assert_equal(11, @article_manager.votes)
   end
 end

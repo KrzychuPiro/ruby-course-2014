@@ -1,5 +1,5 @@
 load 'article.rb'
-load 'article_filesystem'
+load 'article_filesystem.rb'
 
 class ArticleManager
   def initialize(articles = [])
