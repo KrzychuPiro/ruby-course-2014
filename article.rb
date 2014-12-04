@@ -1,3 +1,6 @@
+require 'date'
+require 'stamp'
+
 class Article
   attr_reader :title, :content, :author
   
@@ -27,7 +30,7 @@ class Article
   end
   
   def shortened_to(limit)
-    if limit < 4
+    if limit < 49
       '...'
     else
       @content[0..limit-4] + '...'
@@ -48,5 +51,9 @@ class Article
   
   def to_s
     @title
+  end
+
+  def created_stamp
+    puts Date.parse(@created_at.to_s).stamp('Sunday, May 1, 2000')
   end
 end
