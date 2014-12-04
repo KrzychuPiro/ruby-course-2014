@@ -23,5 +23,7 @@ class TestArticle < Test::Unit::TestCase
     assert_equal(%w(Ala ma Kota 'Tiny i Ru'biego oraz ala ma psa), @article.words)
     assert_equal(%w(Ala ma Kota 'Tiny i Ru'biego oraz psa), @article.distinct_words)
     assert_match('Bajka o kocie', @article.to_s)
+
+    assert_match(%r{(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, \d{}}, @article.created_stamp)
   end
 end
